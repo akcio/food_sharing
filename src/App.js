@@ -12,6 +12,8 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
+	
+
 	useEffect(() => {
 		connect.subscribe(({ detail: { type, data }}) => {
 			if (type === 'VKWebAppUpdateConfig') {
@@ -19,11 +21,16 @@ const App = () => {
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
 				document.body.attributes.setNamedItem(schemeAttribute);
 			}
+			if (type === 'VKWebAppAccessTokenReceived') {
+
+			}
 		});
 		async function fetchData() {
 			const user = await connect.sendPromise('VKWebAppGetUserInfo');
 			setUser(user);
 			setPopout(null);
+			const token = await connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7234568, "scope": "market, photos, friends"});
+			console.log(token);
 		}
 		fetchData();
 	}, []);
