@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/test/static/css/main.981f7211.chunk.css",
-    "main.js": "/test/static/js/main.72385a3f.chunk.js",
-    "main.js.map": "/test/static/js/main.72385a3f.chunk.js.map",
-    "runtime-main.js": "/test/static/js/runtime-main.59a28fbb.js",
-    "runtime-main.js.map": "/test/static/js/runtime-main.59a28fbb.js.map",
-    "static/css/2.2cfa1b23.chunk.css": "/test/static/css/2.2cfa1b23.chunk.css",
-    "static/js/2.2f21b950.chunk.js": "/test/static/js/2.2f21b950.chunk.js",
-    "static/js/2.2f21b950.chunk.js.map": "/test/static/js/2.2f21b950.chunk.js.map",
-    "index.html": "/test/index.html",
-    "precache-manifest.e02c6851f53a3aaf099808b94630ce4b.js": "/test/precache-manifest.e02c6851f53a3aaf099808b94630ce4b.js",
-    "service-worker.js": "/test/service-worker.js",
-    "static/css/2.2cfa1b23.chunk.css.map": "/test/static/css/2.2cfa1b23.chunk.css.map",
-    "static/css/main.981f7211.chunk.css.map": "/test/static/css/main.981f7211.chunk.css.map",
-    "static/js/2.2f21b950.chunk.js.LICENSE": "/test/static/js/2.2f21b950.chunk.js.LICENSE",
-    "static/media/persik.png": "/test/static/media/persik.4e1ec840.png"
+    "main.css": "/food_sharing/static/css/main.981f7211.chunk.css",
+    "main.js": "/food_sharing/static/js/main.72385a3f.chunk.js",
+    "main.js.map": "/food_sharing/static/js/main.72385a3f.chunk.js.map",
+    "runtime-main.js": "/food_sharing/static/js/runtime-main.7a6b4b7f.js",
+    "runtime-main.js.map": "/food_sharing/static/js/runtime-main.7a6b4b7f.js.map",
+    "static/css/2.2cfa1b23.chunk.css": "/food_sharing/static/css/2.2cfa1b23.chunk.css",
+    "static/js/2.db59b893.chunk.js": "/food_sharing/static/js/2.db59b893.chunk.js",
+    "static/js/2.db59b893.chunk.js.map": "/food_sharing/static/js/2.db59b893.chunk.js.map",
+    "index.html": "/food_sharing/index.html",
+    "precache-manifest.c7a579ec1cf5fd5c565364669a954dcf.js": "/food_sharing/precache-manifest.c7a579ec1cf5fd5c565364669a954dcf.js",
+    "service-worker.js": "/food_sharing/service-worker.js",
+    "static/css/2.2cfa1b23.chunk.css.map": "/food_sharing/static/css/2.2cfa1b23.chunk.css.map",
+    "static/css/main.981f7211.chunk.css.map": "/food_sharing/static/css/main.981f7211.chunk.css.map",
+    "static/js/2.db59b893.chunk.js.LICENSE": "/food_sharing/static/js/2.db59b893.chunk.js.LICENSE",
+    "static/media/persik.png": "/food_sharing/static/media/persik.4e1ec840.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.59a28fbb.js",
+    "static/js/runtime-main.7a6b4b7f.js",
     "static/css/2.2cfa1b23.chunk.css",
-    "static/js/2.2f21b950.chunk.js",
+    "static/js/2.db59b893.chunk.js",
     "static/css/main.981f7211.chunk.css",
     "static/js/main.72385a3f.chunk.js"
   ]
