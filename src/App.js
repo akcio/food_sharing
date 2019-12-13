@@ -1,50 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import connect from '@vkontakte/vk-connect';
-import View from '@vkontakte/vkui/dist/components/View/View';
-import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
+import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-
+import fetchJsonp from 'fetch-jsonp';
 import Home from './panels/Home';
-import Persik from './panels/Persik';
+import FoodSharingAPI from './services/food_sharing_api'
 
-const App = () => {
-	const [activePanel, setActivePanel] = useState('home');
-	const [fetchedUser, setUser] = useState(null);
-	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+class App extends React.Component {
+	constructor(props) {
+		super(props);
 
+		this.state = {
+			activePanel: 'home',
+			fetchedUser: null,
+			authToken : null,
+			items : []
+		};
+
+		this.getItems = this.getItems.bind(this)
+	}
 	
-
-	useEffect(() => {
-		connect.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-			if (type === 'VKWebAppAccessTokenReceived') {
-
+	componentDidMount() {
+		connect.subscribe((e) => {
+			switch (e.detail.type) {
+				case 'VKWebAppGetUserInfoResult':
+					this.setState({ fetchedUser: e.detail.data });
+					break;
+				case 'VKWebAppAccessTokenReceived':
+					this.setState({ authToken : e.detail.data.access_token });
+					this.getItems()
+					break;
+				case 'VKWebAppGeodataResult':
+					console.log(e.detail.data);
+					if (e.detail.data.available === '1')
+						console.log(FoodSharingAPI.getNearby(e.detail.data.lat, e.detail.data.long))
+					break;
+				default:
+					console.log(e.detail.type);
 			}
 		});
-		async function fetchData() {
-			const user = await connect.sendPromise('VKWebAppGetUserInfo');
-			setUser(user);
-			setPopout(null);
-			const token = await connect.sendPromise("VKWebAppGetAuthToken", {"app_id": 7234568, "scope": "market, photos, friends"});
-			console.log(token);
-		}
-		fetchData();
-	}, []);
+		connect.send("VKWebAppGetGeodata", {});
+		connect.send('VKWebAppGetUserInfo', {});
+		connect.send("VKWebAppGetAuthToken", {"app_id": 7234568, "scope": "market, photos, friends"});
+	}
 
-	const go = e => {
-		setActivePanel(e.currentTarget.dataset.to);
+	go = (e) => {
+		this.setState({ activePanel: e.currentTarget.dataset.to })
 	};
 
-	return (
-		<View activePanel={activePanel} popout={popout}>
-			<Home id='home' fetchedUser={fetchedUser} go={go} />
-			<Persik id='persik' go={go} />
-		</View>
-	);
+	getItems() {
+		const ownerId = 124527492
+		let api = `https://api.vk.com/method/market.get?v=5.52&access_token=${this.state.authToken}&owner_id=-${ownerId}`
+		fetchJsonp(api)
+		.then(res => res.json())
+		.then(data => this.setState({ items : data.response.items}))
+		.catch(e => [])
+	}
+
+	render() {
+		return (
+			<View activePanel={this.state.activePanel}>
+				<Home id="home" items={this.state.items} fetchedUser={this.state.fetchedUser} go={this.go} />
+			</View>
+		);
+	}
 }
 
 export default App;
