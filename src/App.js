@@ -32,7 +32,8 @@ class App extends React.Component {
 					break;
 				case 'VKWebAppGeodataResult':
 					console.log(e.detail.data);
-					if (e.detail.data.available === '1')
+					if (e.detail.data.available)
+					    console.log("Request start")
 						console.log(FoodSharingAPI.getNearby(e.detail.data.lat, e.detail.data.long))
 					break;
 				default:
