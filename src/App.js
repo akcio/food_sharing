@@ -5,6 +5,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 import fetchJsonp from 'fetch-jsonp';
 import Home from './panels/Home';
 import FoodSharingAPI from './services/food_sharing_api'
+import SharedItems from './panels/SharedItems'
 
 class App extends React.Component {
 	constructor(props) {
@@ -14,7 +15,8 @@ class App extends React.Component {
 			activePanel: 'home',
 			fetchedUser: null,
 			authToken : null,
-			items : []
+			items : [],
+			sharing: []
 		};
 
 		this.getItems = this.getItems.bind(this)
@@ -28,21 +30,25 @@ class App extends React.Component {
 					break;
 				case 'VKWebAppAccessTokenReceived':
 					this.setState({ authToken : e.detail.data.access_token });
-					this.getItems()
+					// this.getItems()
+					connect.send("VKWebAppGetGeodata", {});
 					break;
-				case 'VKWebAppGeodataResult':
-					console.log(e.detail.data);
-					if (e.detail.data.available)
-					    console.log("Request start")
-						console.log(FoodSharingAPI.getNearby(e.detail.data.lat, e.detail.data.long))
+				case 'VKWebAppGeodataResult': {
+					if (e.detail.data.available) {
+						this.getSharedItems((e.detail.data.lat, e.detail.data.long))
+					}
+					else {
+						console.log("Geo declined");
+					}
+						
 					break;
+				}
 				default:
 					console.log(e.detail.type);
 			}
 		});
-		connect.send("VKWebAppGetGeodata", {});
 		connect.send('VKWebAppGetUserInfo', {});
-		connect.send("VKWebAppGetAuthToken", {"app_id": 7234568, "scope": "market, photos, friends"});
+		connect.send("VKWebAppGetAuthToken", {"app_id": 7234568, "scope": "photos, friends"});
 	}
 
 	go = (e) => {
@@ -58,10 +64,19 @@ class App extends React.Component {
 		.catch(e => [])
 	}
 
+	async getSharedItems(lat, lon) {
+		let items = await FoodSharingAPI.getNearby(lat, lon);
+		console.log("----------------");
+		console.log(items);
+		this.setState({activePanel: "shared_items", sharing: items.data});
+		console.log(this.sharing);
+	}
+
 	render() {
 		return (
 			<View activePanel={this.state.activePanel}>
 				<Home id="home" items={this.state.items} fetchedUser={this.state.fetchedUser} go={this.go} />
+				<SharedItems id="shared_items" items={this.state.sharing} />
 			</View>
 		);
 	}
