@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/food_sharing/static/js/main.113e8432.chunk.js",
-    "main.js.map": "/food_sharing/static/js/main.113e8432.chunk.js.map",
+    "main.js": "/food_sharing/static/js/main.e5d3f5cf.chunk.js",
+    "main.js.map": "/food_sharing/static/js/main.e5d3f5cf.chunk.js.map",
     "runtime-main.js": "/food_sharing/static/js/runtime-main.accf6b07.js",
     "runtime-main.js.map": "/food_sharing/static/js/runtime-main.accf6b07.js.map",
     "static/css/2.6452f810.chunk.css": "/food_sharing/static/css/2.6452f810.chunk.css",
     "static/js/2.68be7a85.chunk.js": "/food_sharing/static/js/2.68be7a85.chunk.js",
     "static/js/2.68be7a85.chunk.js.map": "/food_sharing/static/js/2.68be7a85.chunk.js.map",
     "index.html": "/food_sharing/index.html",
-    "precache-manifest.ddc376dc4f8ac19936d3ae95cf11219b.js": "/food_sharing/precache-manifest.ddc376dc4f8ac19936d3ae95cf11219b.js",
+    "precache-manifest.48ea25974962cef689bee4dfbfa286b0.js": "/food_sharing/precache-manifest.48ea25974962cef689bee4dfbfa286b0.js",
     "service-worker.js": "/food_sharing/service-worker.js",
     "static/css/2.6452f810.chunk.css.map": "/food_sharing/static/css/2.6452f810.chunk.css.map",
     "static/js/2.68be7a85.chunk.js.LICENSE": "/food_sharing/static/js/2.68be7a85.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.accf6b07.js",
     "static/css/2.6452f810.chunk.css",
     "static/js/2.68be7a85.chunk.js",
-    "static/js/main.113e8432.chunk.js"
+    "static/js/main.e5d3f5cf.chunk.js"
   ]
 }
