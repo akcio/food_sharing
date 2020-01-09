@@ -1,6 +1,6 @@
 class FoodSharingAPI {
     constructor() {
-        this.apiURL = 'https://ec2-35-175-144-115.compute-1.amazonaws.com/api/v1/';
+        this.apiURL = 'https://ileaban.space/api/v1';
     }
 
     async shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire) {
