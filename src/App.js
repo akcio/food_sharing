@@ -19,7 +19,7 @@ class App extends React.Component {
 			sharing: []
 		};
 
-		this.getItems = this.getItems.bind(this)
+		this.getItems = this.getItems.bind(this);
 	}
 	
 	componentDidMount() {
@@ -43,6 +43,10 @@ class App extends React.Component {
 						
 					break;
 				}
+				case 'VKWebAppGeodataFailed': {
+					console.log(e.detail.data);
+					break;
+				}
 				default:
 					console.log(e.detail.type);
 			}
@@ -56,7 +60,7 @@ class App extends React.Component {
 	};
 
 	getItems() {
-		const ownerId = 124527492
+		const ownerId = 124527492;
 		let api = `https://api.vk.com/method/market.get?v=5.52&access_token=${this.state.authToken}&owner_id=-${ownerId}`
 		fetchJsonp(api)
 		.then(res => res.json())
