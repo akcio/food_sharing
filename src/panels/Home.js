@@ -21,8 +21,15 @@ class Home extends React.Component {
 		this.getSharedItems = this.getSharedItems.bind(this);
 	}
 
+	componentDidMount() {
+		this.getSharedItems();
+	}
+
 	onStoryChange (e) {
-		this.setState({ activeStory: e.currentTarget.dataset.story })
+		this.setState({ activeStory: e.currentTarget.dataset.story });
+		if (this.state.activeStory === 'food') {
+			this.getSharedItems();
+		}
 	}
 
 	async getSharedItems() {
@@ -110,7 +117,6 @@ class Home extends React.Component {
 				<View id="food" activePanel="food">
 					<Panel id="food">
 						<PanelHeader>Еда</PanelHeader>
-						<Button onClick={this.getSharedItems}>Нажми меня</Button>
 						<Group>
 							<List>
 								{
