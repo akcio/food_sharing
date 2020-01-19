@@ -1,6 +1,5 @@
 import React from 'react';
 import connect from '@vkontakte/vk-connect';
-import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import fetchJsonp from 'fetch-jsonp';
 import EpicView from './views/epicView';

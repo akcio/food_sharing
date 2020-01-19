@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Panel, PanelHeader, Spinner, View} from '@vkontakte/vkui';
-import FoodSharingAPI from "../services/food_sharing_api";
+import {Panel, PanelHeader, Spinner, View } from '@vkontakte/vkui';
 
 class MapView extends React.Component {
     render() {

@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {
     Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button
 } from '@vkontakte/vkui';
-import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
 
 class ShareView extends React.Component {

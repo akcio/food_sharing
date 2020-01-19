@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Epic, Panel, PanelHeader, Spinner, View} from '@vkontakte/vkui';
-import FoodSharingAPI from "../services/food_sharing_api";
+import {Panel, PanelHeader, Spinner, View} from '@vkontakte/vkui';
 
 class SharedItemsView extends React.Component {
     render() {

@@ -1,13 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import { Epic, Tabbar, TabbarItem } from '@vkontakte/vkui';
 import Icon24Market from '@vkontakte/icons/dist/24/market';
 import Icon24Place from '@vkontakte/icons/dist/24/place';
 import Icon24Home from '@vkontakte/icons/dist/24/home';
 import Icon24Add from '@vkontakte/icons/dist/24/add';
 import Icon24Reorder from '@vkontakte/icons/dist/24/reorder';
-import FoodSharingAPI from "../services/food_sharing_api";
 import ShareView from "./shareView";
 import MapView from "./mapView";
 import SharedItemsView from "./sharedItemsView";

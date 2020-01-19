@@ -10,3 +10,11 @@ body {
 .PanelHeader {
     color: var(--header_text); /* FIX for Android */
 }
+
+.PanelHeaderButton {
+    color: var(--header_text); /* FIX for Android */
+}
+
+.ProductImage {
+    width: 100%;
+}
