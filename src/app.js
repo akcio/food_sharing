@@ -3,9 +3,8 @@ import connect from '@vkontakte/vk-connect';
 import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import fetchJsonp from 'fetch-jsonp';
-import Home from './panels/Home';
+import EpicView from './views/epicView';
 import FoodSharingAPI from './services/food_sharing_api'
-import SharedItems from './panels/SharedItems'
 
 class App extends React.Component {
 	constructor(props) {
@@ -78,7 +77,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Home id="home" items={this.state.items} fetchedUser={this.state.fetchedUser} go={this.go} />
+			<EpicView id="home" fetchedUser={this.state.fetchedUser} />
 		);
 	}
 }
