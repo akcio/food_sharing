@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Panel, PanelHeader, View } from '@vkontakte/vkui';
+import {Panel, PanelHeader, Spinner, View} from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 
 class MapView extends React.Component {
@@ -9,6 +9,7 @@ class MapView extends React.Component {
             <View id={this.props.id} activePanel={this.props.activePanel}>
                 <Panel id={this.props.id} >
                     <PanelHeader>Карта</PanelHeader>
+                    <Spinner size="large" style={{ marginTop: 20 }} />
                 </Panel>
             </View>
         );
