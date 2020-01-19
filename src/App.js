@@ -78,10 +78,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<View activePanel={this.state.activePanel}>
-				<Home id="home" items={this.state.items} fetchedUser={this.state.fetchedUser} go={this.go} />
-				<SharedItems id="shared_items" items={this.state.sharing} />
-			</View>
+			<Home id="home" items={this.state.items} fetchedUser={this.state.fetchedUser} go={this.go} />
 		);
 	}
 }

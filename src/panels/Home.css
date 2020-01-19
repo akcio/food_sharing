@@ -1,1 +1,12 @@
-.PanelHeader { background: #6f5bae;}
+body {
+    --header_background: #6f5bae;
+    --header_text: #ffffff;
+    --text_primary: #505050;
+    /*--accent: #6f5bae;*/
+    /*--tabbar_active_icon: #ff5147;*/
+    /*--tabbar_active_icon: #00c3d9;*/
+}
+
+.PanelHeader {
+    color: var(--header_text); /* FIX for Android */
+}
