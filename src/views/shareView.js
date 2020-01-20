@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button, PopoutWrapper
+    Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button, Alert
 } from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
@@ -11,7 +11,8 @@ class ShareView extends React.Component {
 
         this.state = {
             caption: '',
-            description: ''
+            description: '',
+            popout: null
         };
 
         this.shareItem = () => {
@@ -20,6 +21,22 @@ class ShareView extends React.Component {
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.openSuccessPopout = this.openSuccessPopout.bind(this);
+        this.openFailPopout = this.openFailPopout.bind(this);
+        this.closePopout = this.closePopout.bind(this);
+    }
+
+    async addItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire) {
+        let response = await FoodSharingAPI.shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire);
+        if (response.resourceId && response.resourceId !== -1) {
+            this.openSuccessPopout();
+            this.setState( {
+                caption: '',
+                description: ''
+            });
+        } else {
+            this.openFailPopout();
+        }
     }
 
     handleInputChange(event) {
@@ -32,14 +49,46 @@ class ShareView extends React.Component {
         });
     }
 
-    async addItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire) {
-        let response = await FoodSharingAPI.shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire);
-        console.log(response);
+    openSuccessPopout() {
+        this.setState({ popout:
+                <Alert
+                    actions={[{
+                        title: 'Хорошо',
+                        autoclose: true,
+                        style: 'cancel'
+                    }]}
+                    onClose={this.closePopout}
+                >
+                    <h2>Вы поделились вашей едой с остальными</h2>
+                    <p>Перейдите на вкладку <Link>Моя Еда</Link>, чтобы увидеть все выложенные товары.</p>
+                    <p>Не забудьте закрыть объявление, после того как отдадите продукт!</p>
+                </Alert>
+        });
+    }
+
+    openFailPopout() {
+        this.setState({ popout:
+                <Alert
+                    actions={[{
+                        title: 'Ок',
+                        autoclose: true,
+                        style: 'cancel'
+                    }]}
+                    onClose={this.closePopout}
+                >
+                    <h2>Ой, что-то пошло не так</h2>
+                    <p>При добавлении товара произошла ошибка. Приносим свои извенения, попробуйте еще раз.</p>
+                </Alert>
+        });
+    }
+
+    closePopout () {
+        this.setState({ popout: null });
     }
 
     render() {
         return (
-            <View id={this.props.id} activePanel={this.props.activePanel}>
+            <View id={this.props.id} activePanel={this.props.activePanel} popout={this.state.popout}>
                 <Panel id={this.props.id}>
                     <PanelHeader>Поделиться</PanelHeader>
                     <FormLayout>
