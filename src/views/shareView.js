@@ -138,7 +138,7 @@ class ShareView extends React.Component {
                             onChange={this.handleInputChange}
                         />
                         <File top={<StarText>Фото</StarText>} before={<Icon24Camera />} bottom="Фото должно быть четким
-                         и кчественным, на снимке должен присутствовать товар, указанный в объявлении." controlSize="xl">
+                         и качественным, на снимке должен присутствовать товар, указанный в объявлении." controlSize="xl">
                             Загрузить фото
                         </File>
                         <Checkbox

@@ -51,7 +51,7 @@ class MoreView extends React.Component {
                         </List>
                     </Group>
                     <Group header={<Header>Настройки</Header>}>
-                        <CellButton onClick={() => this.setState({ activePanel: 'privacy' })}>Приватность</CellButton>
+                        {/*<CellButton onClick={() => this.setState({ activePanel: 'privacy' })}>Приватность</CellButton>*/}
                         <CellButton onClick={() => this.setState({ activePanel: 'notifications' })}>Уведомления</CellButton>
                     </Group>
                     <Group header={<Header>О приложении</Header>}>
@@ -60,18 +60,18 @@ class MoreView extends React.Component {
                     </Group>
                     <Footer>Версия приложения 0.0.0</Footer>
                 </Panel>
-                <Panel id="privacy">
-                    <PanelHeader
-                        left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
-                    >Приватность</PanelHeader>
-                    <Group>
-                        <List>
-                            <Cell asideContent={<Switch />}>
-                                Показывать имя полностью
-                            </Cell>
-                        </List>
-                    </Group>
-                </Panel>
+                {/*<Panel id="privacy">*/}
+                {/*    <PanelHeader*/}
+                {/*        left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}*/}
+                {/*    >Приватность</PanelHeader>*/}
+                {/*    <Group>*/}
+                {/*        <List>*/}
+                {/*            <Cell asideContent={<Switch />}>*/}
+                {/*                Показывать имя полностью*/}
+                {/*            </Cell>*/}
+                {/*        </List>*/}
+                {/*    </Group>*/}
+                {/*</Panel>*/}
                 <Panel id="notifications">
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}

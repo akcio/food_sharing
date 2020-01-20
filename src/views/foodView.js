@@ -16,7 +16,7 @@ import {
     PanelHeaderButton,
     IOS,
     platform,
-    InfoRow
+    InfoRow, Link
 } from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Back from '@vkontakte/icons/dist/24/back';
@@ -36,7 +36,7 @@ class FoodView extends React.Component {
         };
 
         this.onRefresh = () => {
-            this.setState({ fetching: true });
+            this.setState({fetching: true});
             this.updateSharedItems();
         };
     }
@@ -47,69 +47,79 @@ class FoodView extends React.Component {
 
     async updateSharedItems() {
         let response = await FoodSharingAPI.getNearby(1, 2);
-        this.setState( {
-            items: response.data,
-            fetching: false
-        });
+        if (response.data) {
+            this.setState({
+                items: response.data,
+                fetching: false
+            });
+        } else {
+            console.error("No response error:", response);
+            this.setState({
+                items: [],
+                fetching: false
+            });
+        }
     }
 
     render() {
         return (
             <View id={this.props.id} activePanel={this.state.activePanel}>
-                <Panel id="main" separator={false} >
+                <Panel id="main" separator={false}>
                     <PanelHeader>Каталог</PanelHeader>
-                    <Search />
+                    <Search/>
                     <PullToRefresh onRefresh={this.onRefresh} isFetching={this.state.fetching}>
-                    <Group>
-                        <List>
-                            {
-                                this.state.items.length > 0 && this.state.items.map((item, index) => (
-                                    <Cell
-                                        onClick={() => this.setState({
-                                            activePanel: 'detail',
-                                            selectedItem: item
-                                        })}
-                                        key={index}
-                                        before={
-                                            <img alt={""}
-                                                 style={{
-                                                     width: 40,
-                                                     height : 40,
-                                                     margin : 10
-                                                 }}
-                                                 src={item.image_url}
-                                            />
-                                        }
-                                        description={item.description}
-                                        multiline
-                                    >
-                                        {item.caption}
-                                    </Cell>
-                                ))
-                            }
-                            {
-                                this.state.items.length === 0  && this.state.fetching === true &&
-                                <Spinner size="large" style={{ marginTop: 20 }} />
-                            }
-                            {
-                                this.state.items.length === 0 && this.state.fetching === false &&
-                                <Div>
-                                    Пока никто не поделился едой, заходи позже!
-                                </Div>
-                            }
-                        </List>
-                    </Group>
+                        <Group>
+                            <List>
+                                {
+                                    this.state.items.length > 0 && this.state.items.map((item, index) => (
+                                        <Cell
+                                            onClick={() => this.setState({
+                                                activePanel: 'detail',
+                                                selectedItem: item
+                                            })}
+                                            key={index}
+                                            before={
+                                                <img alt={""}
+                                                     style={{
+                                                         width: 40,
+                                                         height: 40,
+                                                         margin: 10
+                                                     }}
+                                                     src={item.image_url}
+                                                />
+                                            }
+                                            description={item.description}
+                                            multiline
+                                        >
+                                            {item.caption}
+                                        </Cell>
+                                    ))
+                                }
+                                {
+                                    this.state.items.length === 0 && this.state.fetching === true &&
+                                    <Spinner size="large" style={{marginTop: 20}}/>
+                                }
+                                {
+                                    this.state.items.length === 0 && this.state.fetching === false &&
+                                    <Div>
+                                        Никто еще не поделился едой. Станьте <Link>первым</Link>!
+                                    </Div>
+                                }
+                            </List>
+                        </Group>
                     </PullToRefresh>
                 </Panel>
                 <Panel id="detail">
                     <PanelHeader
-                        left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
+                        left={<PanelHeaderButton onClick={() => this.setState({activePanel: 'main'})}>{osname === IOS ?
+                            <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
                         after=""
-                    >{ this.state.selectedItem !== undefined ? this.state.selectedItem.caption : "Ошибка" }</PanelHeader>
-                    { this.state.selectedItem !== undefined && this.state.selectedItem.image_url.length > 0 &&
-                        <img alt={""} className={"ProductImage"} src={this.state.selectedItem ? this.state.selectedItem.image_url : ""}/>
+                    >{this.state.selectedItem !== undefined ? this.state.selectedItem.caption : "Ошибка"}</PanelHeader>
+                    {this.state.selectedItem !== undefined && this.state.selectedItem.image_url.length > 0 &&
+                    <img alt={""} className={"ProductImage"}
+                         src={this.state.selectedItem ? this.state.selectedItem.image_url : ""}/>
                     }
-                    { this.state.selectedItem !== undefined &&
+                    {this.state.selectedItem !== undefined &&
                     <Group>
                         <List>
                             <Cell>
@@ -118,11 +128,11 @@ class FoodView extends React.Component {
                                 </InfoRow>
                             </Cell>
                             {this.state.selectedItem.description.length > 0 &&
-                                <Cell>
-                                    <InfoRow header="Описание">
-                                        {this.state.selectedItem.description}
-                                    </InfoRow>
-                                </Cell>
+                            <Cell>
+                                <InfoRow header="Описание">
+                                    {this.state.selectedItem.description}
+                                </InfoRow>
+                            </Cell>
                             }
                             <Cell>
                                 <InfoRow header="Категория">
@@ -141,8 +151,8 @@ class FoodView extends React.Component {
                         </List>
                     </Group>
                     }
-                    { this.state.selectedItem === undefined &&
-                        <Spinner size="large" style={{ marginTop: 20 }} />
+                    {this.state.selectedItem === undefined &&
+                    <Spinner size="large" style={{marginTop: 20}}/>
                     }
                 </Panel>
             </View>
