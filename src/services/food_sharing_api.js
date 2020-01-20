@@ -59,6 +59,22 @@ class FoodSharingAPI {
             return response.json()
         })
     }
+
+    async getItemsByUserId(user_id) {
+        return fetch(this.apiURL + 'by_user/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: user_id
+            })
+        })
+        .then(function (response) {
+            return response.json()
+        })
+    }
 }
 
 export default new FoodSharingAPI();
