@@ -117,11 +117,13 @@ class FoodView extends React.Component {
                                     {this.state.selectedItem.caption}
                                 </InfoRow>
                             </Cell>
-                            <Cell>
-                                <InfoRow header="Описание">
-                                    {this.state.selectedItem.description}
-                                </InfoRow>
-                            </Cell>
+                            {this.state.selectedItem.description.length > 0 &&
+                                <Cell>
+                                    <InfoRow header="Описание">
+                                        {this.state.selectedItem.description}
+                                    </InfoRow>
+                                </Cell>
+                            }
                             <Cell>
                                 <InfoRow header="Категория">
                                     Категория продукта
