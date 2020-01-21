@@ -41,8 +41,6 @@ class App extends React.Component {
 					console.log(e.detail.data);
 					break;
 				}
-				default:
-					console.log(e.detail.type);
 			}
 		});
 		connect.send('VKWebAppGetUserInfo', {});
