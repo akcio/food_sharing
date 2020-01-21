@@ -65,7 +65,7 @@ class EpicView extends React.Component {
 				<MapView id="mapView" activePanel="mapView" />
 				<ShareView id="shareView" activePanel="shareView" fetchedUser={this.props.fetchedUser} />
 				<SharedItemsView id="sharedItemsView" activePanel="sharedItemsView" fetchedUser={this.props.fetchedUser} />
-				<MoreView id="moreView" activePanel="moreView" />
+				<MoreView id="moreView" activePanel="moreView" fetchedUser={this.props.fetchedUser} />
 			</Epic>
 		);
 	}

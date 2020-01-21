@@ -14,7 +14,7 @@ import {
     platform,
     IOS,
     Switch,
-    Div
+    Div, Spinner
 } from '@vkontakte/vkui';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
@@ -39,7 +39,12 @@ class MoreView extends React.Component {
                         <List>
                             <Cell>
                                 <InfoRow header="Ваше имя">
-                                    Имя Фамилия
+                                    {this.props.fetchedUser != null &&
+                                        <span>{this.state.fetchedUserInfo.last_name} {this.state.fetchedUserInfo.first_name}</span>
+                                    }
+                                    {this.props.fetchedUser == null &&
+                                        <Spinner size="small" style={{marginTop: 20}}/>
+                                    }
                                 </InfoRow>
                             </Cell>
                             <Cell>
