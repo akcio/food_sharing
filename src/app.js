@@ -28,8 +28,6 @@ class App extends React.Component {
 					break;
 				case 'VKWebAppAccessTokenReceived':
 					this.setState({ authToken : e.detail.data.access_token });
-					// this.getItems()
-					connect.send("VKWebAppGetGeodata", {});
 					break;
 				case 'VKWebAppGeodataResult': {
 					if (e.detail.data.available) {
@@ -57,15 +55,6 @@ class App extends React.Component {
 		this.setState({ activePanel: e.currentTarget.dataset.to })
 	};
 
-	getItems() {
-		const ownerId = 124527492;
-		let api = `https://api.vk.com/method/market.get?v=5.52&access_token=${this.state.authToken}&owner_id=-${ownerId}`
-		fetchJsonp(api)
-		.then(res => res.json())
-		.then(data => this.setState({ items : data.response.items}))
-		.catch(e => [])
-	}
-
 	async getSharedItems(lat, lon) {
 		let items = await FoodSharingAPI.getNearby(lat, lon);
 		console.log("----------------");
@@ -76,7 +65,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<EpicView id="home" fetchedUser={this.state.fetchedUser} />
+			<EpicView id="home" fetchedUser={this.state.fetchedUser} authToken={this.state.authToken} />
 		);
 	}
 }
