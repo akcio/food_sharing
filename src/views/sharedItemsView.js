@@ -124,7 +124,7 @@ class SharedItemsView extends React.Component {
                     <Spinner size="large" style={{marginTop: 20}}/>
                     }
                 </Panel>
-                <Panel id="detail">
+                <Panel id="detail" id="detail" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({activePanel: 'main'})}>{osname === IOS ?
                             <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}

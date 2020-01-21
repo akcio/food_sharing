@@ -64,7 +64,7 @@ class FoodView extends React.Component {
     render() {
         return (
             <View id={this.props.id} activePanel={this.state.activePanel}>
-                <Panel id="main" separator={false}>
+                <Panel id="main">
                     <PanelHeader>Каталог</PanelHeader>
                     <Search/>
                     <PullToRefresh onRefresh={this.onRefresh} isFetching={this.state.fetching}>
@@ -109,11 +109,11 @@ class FoodView extends React.Component {
                         </Group>
                     </PullToRefresh>
                 </Panel>
-                <Panel id="detail">
+                <Panel id="detail" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({activePanel: 'main'})}>{osname === IOS ?
                             <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
-                        after=""
+                        noShadow="true"
                     >{this.state.selectedItem != null ? this.state.selectedItem.caption : "Ошибка"}</PanelHeader>
                     {this.state.selectedItem != null && this.state.selectedItem.image_url.length > 0 &&
                     <img alt={""} className={"ProductImage"}
