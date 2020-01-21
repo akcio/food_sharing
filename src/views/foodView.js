@@ -50,7 +50,11 @@ class FoodView extends React.Component {
     }
 
     async cellOnClickFunction(item) {
-        this.setState({fetchedUserInfo: null});
+        this.setState({
+            activePanel: 'detail',
+            selectedItem: item,
+            fetchedUserInfo: null
+        });
         let res = await connect.sendPromise('VKWebAppCallAPIMethod', {
             "method": "users.get",
             "request_id": "userInfo_"+item.user_id.toString().replace(' ', ""),
@@ -61,10 +65,10 @@ class FoodView extends React.Component {
             }
         }).then(function (response) {
             return response.response[0];
+        }).catch(function(reason) {
+            console.error(reason);
         });
         this.setState({
-            activePanel: 'detail',
-            selectedItem: item,
             fetchedUserInfo: res
         });
     }
@@ -165,7 +169,7 @@ class FoodView extends React.Component {
                                     {this.state.fetchedUserInfo &&
                                         <span>{this.state.fetchedUserInfo.last_name} {this.state.fetchedUserInfo.first_name}</span>
                                     }
-                                    {this.state.fetchedUserInfo === null &&
+                                    {this.state.fetchedUserInfo == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>
                                     }
                                 </InfoRow>
