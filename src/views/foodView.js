@@ -32,7 +32,7 @@ class FoodView extends React.Component {
             items: [],
             fetching: true,
             activePanel: 'main',
-            selectedItem: undefined
+            selectedItem: null
         };
 
         this.onRefresh = () => {
@@ -114,12 +114,12 @@ class FoodView extends React.Component {
                         left={<PanelHeaderButton onClick={() => this.setState({activePanel: 'main'})}>{osname === IOS ?
                             <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
                         after=""
-                    >{this.state.selectedItem !== undefined ? this.state.selectedItem.caption : "Ошибка"}</PanelHeader>
-                    {this.state.selectedItem !== undefined && this.state.selectedItem.image_url.length > 0 &&
+                    >{this.state.selectedItem != null ? this.state.selectedItem.caption : "Ошибка"}</PanelHeader>
+                    {this.state.selectedItem != null && this.state.selectedItem.image_url.length > 0 &&
                     <img alt={""} className={"ProductImage"}
                          src={this.state.selectedItem ? this.state.selectedItem.image_url : ""}/>
                     }
-                    {this.state.selectedItem !== undefined &&
+                    {this.state.selectedItem != null &&
                     <Group>
                         <List>
                             <Cell>
@@ -151,7 +151,7 @@ class FoodView extends React.Component {
                         </List>
                     </Group>
                     }
-                    {this.state.selectedItem === undefined &&
+                    {this.state.selectedItem == null &&
                     <Spinner size="large" style={{marginTop: 20}}/>
                     }
                 </Panel>

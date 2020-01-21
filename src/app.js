@@ -16,8 +16,6 @@ class App extends React.Component {
 			items : [],
 			sharing: []
 		};
-
-		this.getItems = this.getItems.bind(this);
 	}
 	
 	componentDidMount() {

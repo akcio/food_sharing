@@ -25,7 +25,12 @@ class ShareView extends React.Component {
 
         this.shareItem = () => {
             // TODO Add true parameters!
-            this.addItem(this.props.fetchedUser.id, this.state.caption, this.state.description, 1, 1, 1, "https://s3.amazonaws.com/tinycards/image/60cacd94bfbd3795f72912ec254efb38", new Date());
+            if (this.props.fetchedUser != null) {
+                this.addItem(this.props.fetchedUser.id, this.state.caption, this.state.description, 1, 1, 1, "https://s3.amazonaws.com/tinycards/image/60cacd94bfbd3795f72912ec254efb38", new Date());
+            } else {
+                console.error("No fetched user!");
+                this.openFailPopout(this.ErrorType.UNKNOWN_ERROR);
+            }
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
