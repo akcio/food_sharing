@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button, Alert, Group, Footer
+    Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button, Alert, Footer
 } from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
@@ -100,7 +100,7 @@ class ShareView extends React.Component {
                         <h2>Заполнены не все обязательные поля</h2>
                     }
                     {errorType === this.ErrorType.NOT_FILLED &&
-                        <p><StarText>Пожалуйста, заполните все поля, обозначенные символом </StarText>.</p>
+                        <p>Пожалуйста, заполните все поля, обозначенные символом <StarText/>.</p>
                     }
                 </Alert>
         });
@@ -155,7 +155,7 @@ class ShareView extends React.Component {
                         ><StarText>Я принимаю условия <Link>лицензионного соглашения</Link></StarText></Checkbox>
                         <Button size="xl" onClick={this.shareItem}>Поделиться</Button>
                     </FormLayout>
-                    <Footer><StarText>Символом </StarText> помечены обязательные поля</Footer>
+                    <Footer>Символом <StarText/> помечены обязательные поля</Footer>
                 </Panel>
             </View>
         );

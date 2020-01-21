@@ -11,7 +11,6 @@ import {
     Header,
     Footer,
     PanelHeaderButton,
-    // HeaderButton,
     platform,
     IOS,
     Switch,

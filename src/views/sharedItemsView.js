@@ -58,7 +58,7 @@ class SharedItemsView extends React.Component {
 
     render() {
         return (
-            <View id={this.props.id} activePanel="main">
+            <View id={this.props.id} activePanel={this.state.activePanel}>
                 <Panel id="main">
                     <PanelHeader>Моя еда</PanelHeader>
                     <Group>
@@ -102,18 +102,18 @@ class SharedItemsView extends React.Component {
                                         </Cell>
                                     ))
                                 }
-                                {
-                                    this.state.items.length === 0 && this.state.fetching === true &&
-                                    <Spinner size="large" style={{marginTop: 20}}/>
-                                }
-                                {
-                                    this.state.items.length === 0 && this.state.fetching === false &&
-                                    <Div>
-                                        Вы еще ни с кем не поделились едой. Начните <Link>прямо сейчас</Link>!
-                                    </Div>
-                                }
                             </List>
                         </Group>
+                        {
+                            this.state.items.length === 0 && this.state.fetching === true &&
+                            <Spinner size="large" style={{marginTop: 20}}/>
+                        }
+                        {
+                            this.state.items.length === 0 && this.state.fetching === false &&
+                            <Div>
+                                Вы еще ни с кем не поделились едой. Начните <Link>прямо сейчас</Link>!
+                            </Div>
+                        }
                     </PullToRefresh>
                     }
                     {this.state.activeTab === 'ask' &&
