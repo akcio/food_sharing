@@ -67,10 +67,6 @@ class FoodView extends React.Component {
             selectedItem: item,
             fetchedUserInfo: res
         });
-        // this.setState({
-        //     activePanel: 'detail',
-        //     selectedItem: item
-        // });
     }
 
     async updateSharedItems() {
@@ -92,7 +88,7 @@ class FoodView extends React.Component {
     render() {
         return (
             <View id={this.props.id} activePanel={this.state.activePanel}>
-                <Panel id="main">
+                <Panel id="main" separator={false}>
                     <PanelHeader>Каталог</PanelHeader>
                     <Search/>
                     <PullToRefresh onRefresh={this.onRefresh} isFetching={this.state.fetching}>
@@ -170,7 +166,7 @@ class FoodView extends React.Component {
                                         <span>{this.state.fetchedUserInfo.last_name} {this.state.fetchedUserInfo.first_name}</span>
                                     }
                                     {this.state.fetchedUserInfo === null &&
-                                        "Имя Ф."
+                                        <Spinner size="small" style={{marginTop: 20}}/>
                                     }
                                 </InfoRow>
                             </Cell>

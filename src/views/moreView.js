@@ -33,7 +33,7 @@ class MoreView extends React.Component {
     render() {
         return (
             <View id={this.props.id} activePanel={ this.state.activePanel }>
-                <Panel id="main">
+                <Panel id="main" separator={false}>
                     <PanelHeader>Дополнительно</PanelHeader>
                     <Group header={<Header>Аккаунт</Header>}>
                         <List>
@@ -59,7 +59,7 @@ class MoreView extends React.Component {
                     </Group>
                     <Footer>Версия приложения 0.0.0</Footer>
                 </Panel>
-                {/*<Panel id="privacy">*/}
+                {/*<Panel id="privacy" separator={false}>*/}
                 {/*    <PanelHeader*/}
                 {/*        left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}*/}
                 {/*    >Приватность</PanelHeader>*/}
@@ -71,7 +71,7 @@ class MoreView extends React.Component {
                 {/*        </List>*/}
                 {/*    </Group>*/}
                 {/*</Panel>*/}
-                <Panel id="notifications">
+                <Panel id="notifications" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
                     >Уведомления</PanelHeader>
@@ -83,7 +83,7 @@ class MoreView extends React.Component {
                         </List>
                     </Group>
                 </Panel>
-                <Panel id="license">
+                <Panel id="license" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
                     >Лицензионное соглашение</PanelHeader>
@@ -91,7 +91,7 @@ class MoreView extends React.Component {
                         Лицензионное соглашение.
                     </Div>
                 </Panel>
-                <Panel id="regulations">
+                <Panel id="regulations" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
                     >Правила</PanelHeader>

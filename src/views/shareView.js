@@ -118,7 +118,7 @@ class ShareView extends React.Component {
     render() {
         return (
             <View id={this.props.id} activePanel={this.props.activePanel} popout={this.state.popout}>
-                <Panel id={this.props.id}>
+                <Panel id={this.props.id} separator={false}>
                     <PanelHeader>Поделиться</PanelHeader>
                     <FormLayout>
                         <Select top={<StarText>Категория</StarText>} placeholder="Выберите категорию">

@@ -63,7 +63,7 @@ class SharedItemsView extends React.Component {
     render() {
         return (
             <View id={this.props.id} activePanel={this.state.activePanel}>
-                <Panel id="main">
+                <Panel id="main" separator={false}>
                     <PanelHeader>Моя еда</PanelHeader>
                     <Group>
                         <Tabs>
