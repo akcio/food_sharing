@@ -47,7 +47,7 @@ class FoodView extends React.Component {
 
     async updateSharedItems() {
         let response = await FoodSharingAPI.getNearby(1, 2);
-        if (response.data) {
+        if (response.data != null) {
             this.setState({
                 items: response.data,
                 fetching: false

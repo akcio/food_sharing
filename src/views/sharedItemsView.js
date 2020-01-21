@@ -41,8 +41,12 @@ class SharedItemsView extends React.Component {
     }
 
     async updateSharedItems() {
-        let response = await FoodSharingAPI.getItemsByUserId(1);
-        if (response.data) {
+        if (this.props.fetchedUser == null) {
+            console.error("No fetched user!");
+            return;
+        }
+        let response = await FoodSharingAPI.getItemsByUserId(this.props.fetchedUser.id);
+        if (response.data != null) {
             this.setState({
                 items: response.data,
                 fetching: false
@@ -152,7 +156,13 @@ class SharedItemsView extends React.Component {
                             </Cell>
                             <Cell>
                                 <InfoRow header="Владелец">
-                                    Имя Ф.
+                                    {this.props.fetchedUser == null &&
+                                        "Имя Ф."
+                                    }
+                                    {this.props.fetchedUser != null &&
+                                        <span>{this.props.fetchedUser.last_name} {this.props.fetchedUser.first_name}</span>
+                                    }
+
                                 </InfoRow>
                             </Cell>
                             <CellButton>Показать на карте</CellButton>
