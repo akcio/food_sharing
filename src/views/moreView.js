@@ -40,7 +40,7 @@ class MoreView extends React.Component {
                             <Cell>
                                 <InfoRow header="Ваше имя">
                                     {this.props.fetchedUser != null &&
-                                        <span>{this.state.fetchedUserInfo.last_name} {this.state.fetchedUserInfo.first_name}</span>
+                                        <span>{this.props.fetchedUser.first_name} {this.props.fetchedUser.last_name}</span>
                                     }
                                     {this.props.fetchedUser == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>

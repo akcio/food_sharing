@@ -166,8 +166,8 @@ class FoodView extends React.Component {
                             </Cell>
                             <Cell>
                                 <InfoRow header="Владелец">
-                                    {this.state.fetchedUserInfo &&
-                                        <span>{this.state.fetchedUserInfo.last_name} {this.state.fetchedUserInfo.first_name}</span>
+                                    {this.state.fetchedUserInfo != null &&
+                                        <span>{this.state.fetchedUserInfo.first_name} {this.state.fetchedUserInfo.last_name}</span>
                                     }
                                     {this.state.fetchedUserInfo == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>

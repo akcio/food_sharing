@@ -156,13 +156,12 @@ class SharedItemsView extends React.Component {
                             </Cell>
                             <Cell>
                                 <InfoRow header="Владелец">
-                                    {this.props.fetchedUser == null &&
-                                        "Имя Ф."
-                                    }
                                     {this.props.fetchedUser != null &&
-                                        <span>{this.props.fetchedUser.last_name} {this.props.fetchedUser.first_name}</span>
+                                        <span>{this.props.fetchedUser.first_name} {this.props.fetchedUser.last_name}</span>
                                     }
-
+                                    {this.props.fetchedUser == null &&
+                                        <Spinner size="small" style={{marginTop: 20}}/>
+                                    }
                                 </InfoRow>
                             </Cell>
                             <CellButton>Показать на карте</CellButton>
