@@ -49,6 +49,13 @@ class FoodView extends React.Component {
         this.onRefresh();
     }
 
+    getShortName(name) {
+        if (name.length > 0)
+            return name[0] + ".";
+        else
+            return "";
+    }
+
     async cellOnClickFunction(item) {
         this.setState({
             activePanel: 'detail',
@@ -167,7 +174,7 @@ class FoodView extends React.Component {
                             <Cell>
                                 <InfoRow header="Владелец">
                                     {this.state.fetchedUserInfo != null &&
-                                        <span>{this.state.fetchedUserInfo.first_name} {this.state.fetchedUserInfo.last_name}</span>
+                                        <span>{this.state.fetchedUserInfo.first_name} {this.getShortName(this.state.fetchedUserInfo.last_name)}</span>
                                     }
                                     {this.state.fetchedUserInfo == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>

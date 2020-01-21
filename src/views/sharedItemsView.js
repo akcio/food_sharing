@@ -60,6 +60,13 @@ class SharedItemsView extends React.Component {
         }
     }
 
+    getShortName(name) {
+        if (name.length > 0)
+            return name[0] + ".";
+        else
+            return "";
+    }
+
     render() {
         return (
             <View id={this.props.id} activePanel={this.state.activePanel}>
@@ -157,7 +164,7 @@ class SharedItemsView extends React.Component {
                             <Cell>
                                 <InfoRow header="Владелец">
                                     {this.props.fetchedUser != null &&
-                                        <span>{this.props.fetchedUser.first_name} {this.props.fetchedUser.last_name}</span>
+                                        <span>{this.props.fetchedUser.first_name} {this.getShortName(this.props.fetchedUser.last_name)}</span>
                                     }
                                     {this.props.fetchedUser == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>
