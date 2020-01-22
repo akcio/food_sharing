@@ -38,13 +38,22 @@ class MapView extends React.Component {
     }
 
     render() {
-        const position = [this.state.lat, this.state.lon]
+        const position = [this.state.lat, this.state.lon];
+
+        const mapStyle = {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%'
+        };
+
         return (
             <View id={this.props.id} activePanel={this.props.activePanel}>
                 <Panel id={this.props.id} separator={false}>
                     <PanelHeader>Карта</PanelHeader>
                     <YMaps onApiAvaliable={ymaps => this.handleApiAvaliable(ymaps)}>
-                        <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
+                        <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} style={mapStyle}>
                         {
                             this.state.items.length > 0 && this.state.items.map((item, index) => (
                                 <Placemark
@@ -52,7 +61,6 @@ class MapView extends React.Component {
                                     defaultGeometry={[item.lat, item.lon]}
                                     onClick={()=>{console.log(item)}}
                                 />
-
                             ))
                         }
                         </Map>
