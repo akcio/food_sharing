@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button, Alert, Footer
+    Panel, PanelHeader, View, Input, FormLayout, Textarea, Select, Checkbox, Link, File, Button, Alert, Footer, Spinner
 } from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
@@ -121,10 +121,18 @@ class ShareView extends React.Component {
                 <Panel id={this.props.id} separator={false}>
                     <PanelHeader>Поделиться</PanelHeader>
                     <FormLayout>
-                        <Select top={<StarText>Категория</StarText>} placeholder="Выберите категорию">
-                            <option value="shareView.js">Еда</option>
-                            <option value="Drink">Напитки</option>
-                        </Select>
+                        {this.props.categories == null &&
+                            <Spinner size="small" style={{marginTop: 20}}/>
+                        }
+                        {this.props.categories != null &&
+                            <Select top={<StarText>Категория</StarText>} placeholder="Выберите категорию">
+                                {
+                                    this.props.categories.length > 0 && this.props.categories.map((item, index) => (
+                                        <option value={item.id}>{item.name}</option>
+                                    ))
+                                }
+                            </Select>
+                        }
                         <Input
                             type="text"
                             top={<StarText>Название продукта</StarText>}

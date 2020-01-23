@@ -75,6 +75,21 @@ class FoodSharingAPI {
             return response.json()
         })
     }
+
+    async getCategories() {
+        return fetch(this.apiURL + 'categories/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            })
+        })
+            .then(function (response) {
+                return response.json()
+            })
+    }
 }
 
 export default new FoodSharingAPI();

@@ -14,7 +14,8 @@ class App extends React.Component {
 			fetchedUser: null,
 			authToken : null,
 			items : [],
-			sharing: []
+			sharing: [],
+			categories: null,
 		};
 	}
 	
@@ -45,6 +46,9 @@ class App extends React.Component {
 		});
 		connect.send('VKWebAppGetUserInfo', {});
 		connect.send("VKWebAppGetAuthToken", {"app_id": 7234568, "scope": "photos, friends"});
+
+		FoodSharingAPI.getCategories()
+			.then((response) => {this.setState({categories: response.data})});
 	}
 
 	go = (e) => {
@@ -61,7 +65,11 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<EpicView id="home" fetchedUser={this.state.fetchedUser} authToken={this.state.authToken} />
+			<EpicView id="home"
+					  fetchedUser={this.state.fetchedUser}
+					  authToken={this.state.authToken}
+					  categories={this.state.categories}
+			/>
 		);
 	}
 }
