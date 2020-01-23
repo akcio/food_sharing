@@ -15,6 +15,7 @@ import {
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
+import Icon24Dismiss from '@vkontakte/icons/dist/24/dismiss';
 
 const osname = platform();
 
@@ -34,6 +35,12 @@ class SharedItemsView extends React.Component {
             this.setState({fetching: true});
             this.updateSharedItems();
         };
+
+        this.onDelete = () => {
+            this.setState({fetching: true});
+            this.deleteItem();
+            this.updateSharedItems();
+        };
     }
 
     componentDidMount() {
@@ -46,6 +53,7 @@ class SharedItemsView extends React.Component {
             return;
         }
         let response = await FoodSharingAPI.getItemsByUserId(this.props.fetchedUser.id);
+        // let response = await FoodSharingAPI.getNearby(1, 2);
         if (response.data != null) {
             this.setState({
                 items: response.data,
@@ -58,6 +66,10 @@ class SharedItemsView extends React.Component {
                 fetching: false
             });
         }
+    }
+
+    async deleteItem() {
+        console.log("delete");
     }
 
     getShortName(name) {
@@ -106,6 +118,7 @@ class SharedItemsView extends React.Component {
                                                      src={item.image_url}
                                                 />
                                             }
+                                            asideContent={<Icon24Dismiss style={{color: "#ff5147"}} onClick={this.onDelete()}/>}
                                             description={item.description}
                                             multiline
                                         >
@@ -135,7 +148,6 @@ class SharedItemsView extends React.Component {
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({activePanel: 'main'})}>{osname === IOS ?
                             <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
-                        after=""
                     >{this.state.selectedItem != null ? this.state.selectedItem.caption : "Ошибка"}</PanelHeader>
                     {this.state.selectedItem != null && this.state.selectedItem.image_url.length > 0 &&
                     <img alt={""} className={"ProductImage"}
