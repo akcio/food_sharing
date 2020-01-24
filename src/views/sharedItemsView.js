@@ -170,7 +170,7 @@ class SharedItemsView extends React.Component {
                             }
                             <Cell>
                                 <InfoRow header="Категория">
-                                    Категория продукта
+                                    {this.state.selectedItem.category.name}
                                 </InfoRow>
                             </Cell>
                             <Cell>
