@@ -144,7 +144,7 @@ class SharedItemsView extends React.Component {
                     <Spinner size="large" style={{marginTop: 20}}/>
                     }
                 </Panel>
-                <Panel id="detail" id="detail" separator={false}>
+                <Panel id="detail" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({activePanel: 'main'})}>{osname === IOS ?
                             <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}
@@ -176,7 +176,7 @@ class SharedItemsView extends React.Component {
                             <Cell>
                                 <InfoRow header="Владелец">
                                     {this.props.fetchedUser != null &&
-                                        <span>{this.props.fetchedUser.first_name} {this.getShortName(this.props.fetchedUser.last_name)}</span>
+                                        <>{this.props.fetchedUser.first_name} {this.getShortName(this.props.fetchedUser.last_name)}</>
                                     }
                                     {this.props.fetchedUser == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>

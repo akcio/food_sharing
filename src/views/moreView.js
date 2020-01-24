@@ -47,7 +47,7 @@ class MoreView extends React.Component {
                             <Cell>
                                 <InfoRow header="Ваше имя">
                                     {this.props.fetchedUser != null &&
-                                        <span>{this.props.fetchedUser.first_name} {this.getShortName(this.props.fetchedUser.last_name)}</span>
+                                        <>{this.props.fetchedUser.first_name} {this.getShortName(this.props.fetchedUser.last_name)}</>
                                     }
                                     {this.props.fetchedUser == null &&
                                         <Spinner size="small" style={{marginTop: 20}}/>
@@ -71,18 +71,6 @@ class MoreView extends React.Component {
                     </Group>
                     <Footer>Версия приложения 0.0.0</Footer>
                 </Panel>
-                {/*<Panel id="privacy" separator={false}>*/}
-                {/*    <PanelHeader*/}
-                {/*        left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}*/}
-                {/*    >Приватность</PanelHeader>*/}
-                {/*    <Group>*/}
-                {/*        <List>*/}
-                {/*            <Cell asideContent={<Switch />}>*/}
-                {/*                Показывать имя полностью*/}
-                {/*            </Cell>*/}
-                {/*        </List>*/}
-                {/*    </Group>*/}
-                {/*</Panel>*/}
                 <Panel id="notifications" separator={false}>
                     <PanelHeader
                         left={<PanelHeaderButton onClick={() => this.setState({ activePanel: 'main' })}>{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</PanelHeaderButton>}

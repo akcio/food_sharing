@@ -16,7 +16,8 @@ import {
     PanelHeaderButton,
     IOS,
     platform,
-    InfoRow, Link
+    InfoRow, Link,
+    FixedLayout
 } from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Back from '@vkontakte/icons/dist/24/back';
@@ -64,15 +65,15 @@ class FoodView extends React.Component {
         });
         let res = await connect.sendPromise('VKWebAppCallAPIMethod', {
             "method": "users.get",
-            "request_id": "userInfo_"+item.user_id.toString().replace(' ', ""),
+            "request_id": "userInfo_" + item.user_id.toString().replace(' ', ""),
             "params": {
                 "user_ids": item.user_id,
-                "v":"5.103",
-                "access_token":this.props.authToken
+                "v": "5.103",
+                "access_token": this.props.authToken
             }
         }).then(function (response) {
             return response.response[0];
-        }).catch(function(reason) {
+        }).catch(function (reason) {
             console.error(reason);
         });
         this.setState({
@@ -101,8 +102,10 @@ class FoodView extends React.Component {
             <View id={this.props.id} activePanel={this.state.activePanel}>
                 <Panel id="main" separator={false}>
                     <PanelHeader>Каталог</PanelHeader>
-                    <Search/>
-                    <PullToRefresh onRefresh={this.onRefresh} isFetching={this.state.fetching}>
+                    <FixedLayout vertical="top">
+                        <Search/>
+                    </FixedLayout>
+                    <PullToRefresh style={{ paddingTop: 'calc(var(--panelheader_height_ios) + var(--safe-area-inset-top))' }} onRefresh={this.onRefresh} isFetching={this.state.fetching}>
                         <Group>
                             <List>
                                 {
@@ -174,10 +177,10 @@ class FoodView extends React.Component {
                             <Cell>
                                 <InfoRow header="Владелец">
                                     {this.state.fetchedUserInfo != null &&
-                                        <span>{this.state.fetchedUserInfo.first_name} {this.getShortName(this.state.fetchedUserInfo.last_name)}</span>
+                                    <>{this.state.fetchedUserInfo.first_name} {this.getShortName(this.state.fetchedUserInfo.last_name)}</>
                                     }
                                     {this.state.fetchedUserInfo == null &&
-                                        <Spinner size="small" style={{marginTop: 20}}/>
+                                    <Spinner size="small" style={{marginTop: 20}}/>
                                     }
                                 </InfoRow>
                             </Cell>

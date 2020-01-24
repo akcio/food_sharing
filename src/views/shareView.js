@@ -130,7 +130,7 @@ class ShareView extends React.Component {
                             <Select top={<>Категория <Star/></>} placeholder="Выберите категорию" value={this.state.category} onChange={this.handleInputChange} name="category">
                                 {
                                     this.props.categories.length > 0 && this.props.categories.map((item, index) => (
-                                        <option value={item.id}>{item.name}</option>
+                                        <option key={item.id} value={item.id}>{item.name}</option>
                                     ))
                                 }
                             </Select>
