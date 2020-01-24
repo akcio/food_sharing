@@ -4,7 +4,7 @@ import {
 } from '@vkontakte/vkui';
 import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
-import StarText from "../components/starText";
+import Star from "../components/star";
 
 class ShareView extends React.Component {
     constructor(props) {
@@ -107,7 +107,7 @@ class ShareView extends React.Component {
                         <h2>Заполнены не все обязательные поля</h2>
                     }
                     {errorType === this.ErrorType.NOT_FILLED &&
-                        <p>Пожалуйста, заполните все поля, обозначенные символом <StarText/>.</p>
+                        <p>Пожалуйста, заполните все поля, обозначенные символом <Star/>.</p>
                     }
                 </Alert>
         });
@@ -127,7 +127,7 @@ class ShareView extends React.Component {
                             <Spinner size="small" style={{marginTop: 20}}/>
                         }
                         {this.props.categories != null &&
-                            <Select top={<StarText>Категория</StarText>} placeholder="Выберите категорию" value={this.state.category} onChange={this.handleInputChange} name="category">
+                            <Select top={<>Категория <Star/></>} placeholder="Выберите категорию" value={this.state.category} onChange={this.handleInputChange} name="category">
                                 {
                                     this.props.categories.length > 0 && this.props.categories.map((item, index) => (
                                         <option value={item.id}>{item.name}</option>
@@ -137,7 +137,7 @@ class ShareView extends React.Component {
                         }
                         <Input
                             type="text"
-                            top={<StarText>Название продукта</StarText>}
+                            top={<>Название продукта <Star/></>}
                             bottom="Не пишите в названии ключевые слова
                             &quot;Отдам&quot; или &quot;Обменяю&quot;, вместо этого укажите точное название, чтобы
                             остальным было проще найти ваше предложение."
@@ -152,7 +152,7 @@ class ShareView extends React.Component {
                             value={this.state.description}
                             onChange={this.handleInputChange}
                         />
-                        <File top={<StarText>Фото</StarText>} before={<Icon24Camera />} bottom="Фото должно быть четким
+                        <File top={<>Фото <Star/></>} before={<Icon24Camera />} bottom="Фото должно быть четким
                          и качественным, на снимке должен присутствовать товар, указанный в объявлении." controlSize="xl">
                             Загрузить фото
                         </File>
@@ -161,16 +161,16 @@ class ShareView extends React.Component {
                             name="regulations"
                             checked={this.state.regulations}
                             onChange={this.handleInputChange}
-                        ><StarText>Я принимаю <Link>правила приложения</Link></StarText></Checkbox>
+                        >Я принимаю <Link>правила приложения</Link> <Star/></Checkbox>
                         <Checkbox
                             type="checkbox"
                             name="license"
                             checked={this.state.license}
                             onChange={this.handleInputChange}
-                        ><StarText>Я принимаю условия <Link>лицензионного соглашения</Link></StarText></Checkbox>
+                        >Я принимаю условия <Link>лицензионного соглашения</Link> <Star/></Checkbox>
                         <Button size="xl" onClick={this.shareItem}>Поделиться</Button>
                     </FormLayout>
-                    <Footer>Символом <StarText/> помечены обязательные поля</Footer>
+                    <Footer>Символом <Star/> помечены обязательные поля</Footer>
                 </Panel>
             </View>
         );
