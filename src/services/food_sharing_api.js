@@ -3,7 +3,7 @@ class FoodSharingAPI {
         this.apiURL = 'https://ileaban.space/api/v1/';
     }
 
-    async shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire) {
+    async shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire, categoryId) {
         return fetch(this.apiURL + 'share/', {
             method: 'POST',
             headers: {
@@ -18,7 +18,8 @@ class FoodSharingAPI {
                 lat: latitude,
                 lon: longitude,
                 price: in_price,
-                expiration: in_expire
+                expiration: in_expire,
+                category: {id: categoryId},
             })
         })
         .then(function (response) {
