@@ -11,6 +11,7 @@ class ShareView extends React.Component {
         super(props);
 
         this.state = {
+            category: '',
             caption: '',
             description: '',
             regulations: false,
@@ -26,7 +27,7 @@ class ShareView extends React.Component {
         this.shareItem = () => {
             // TODO Add true parameters!
             if (this.props.fetchedUser != null) {
-                this.addItem(this.props.fetchedUser.id, this.state.caption, this.state.description, 1, 1, 1, "https://s3.amazonaws.com/tinycards/image/60cacd94bfbd3795f72912ec254efb38", new Date());
+                this.addItem(this.props.fetchedUser.id, this.state.caption, this.state.description, 1, 1, 1, "https://s3.amazonaws.com/tinycards/image/60cacd94bfbd3795f72912ec254efb38", new Date(), parseInt(this.state.category));
             } else {
                 console.error("No fetched user!");
                 this.openFailPopout(this.ErrorType.UNKNOWN_ERROR);
@@ -39,12 +40,13 @@ class ShareView extends React.Component {
         this.closePopout = this.closePopout.bind(this);
     }
 
-    async addItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire) {
-        if (this.state.caption.length > 0 && this.state.regulations && this.state.license) {
-            let response = await FoodSharingAPI.shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire);
+    async addItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire, in_category) {
+        if (this.state.category.length > 0 && this.state.caption.length > 0 && this.state.regulations && this.state.license) {
+            let response = await FoodSharingAPI.shareItem(vk_id, in_caption, in_description, latitude, longitude, in_price, imageURL, in_expire, in_category);
             if (response.resourceId && response.resourceId !== -1) {
                 this.openSuccessPopout();
                 this.setState({
+                    category: '',
                     caption: '',
                     description: '',
                     regulations: false,
@@ -125,7 +127,7 @@ class ShareView extends React.Component {
                             <Spinner size="small" style={{marginTop: 20}}/>
                         }
                         {this.props.categories != null &&
-                            <Select top={<StarText>Категория</StarText>} placeholder="Выберите категорию">
+                            <Select top={<StarText>Категория</StarText>} placeholder="Выберите категорию" value={this.state.category} onChange={this.handleInputChange} name="category">
                                 {
                                     this.props.categories.length > 0 && this.props.categories.map((item, index) => (
                                         <option value={item.id}>{item.name}</option>

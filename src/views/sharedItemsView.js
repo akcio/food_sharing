@@ -118,7 +118,7 @@ class SharedItemsView extends React.Component {
                                                      src={item.image_url}
                                                 />
                                             }
-                                            asideContent={<Icon24Dismiss style={{color: "#ff5147"}} onClick={this.onDelete()}/>}
+                                            asideContent={<Icon24Dismiss style={{color: "#ff5147"}} onClick={this.onDelete}/>}
                                             description={item.description}
                                             multiline
                                         >
