@@ -16,6 +16,7 @@ import FoodSharingAPI from "../services/food_sharing_api";
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Dismiss from '@vkontakte/icons/dist/24/dismiss';
+import vkQr from '@vkontakte/vk-qr';
 
 const osname = platform();
 
@@ -184,6 +185,11 @@ class SharedItemsView extends React.Component {
                                 </InfoRow>
                             </Cell>
                             <CellButton>Показать на карте</CellButton>
+                                {vkQr.createQR(JSON.stringify({'id':this.state.selectedItem.id, }), {
+                                      qrSize: 256,
+                                      isShowLogo: true
+                                    })
+                                }
                             <FormLayout>
                                 <Button size="xl">Написать владельцу</Button>
                             </FormLayout>
@@ -191,7 +197,7 @@ class SharedItemsView extends React.Component {
                     </Group>
                     }
                     {this.state.selectedItem == null &&
-                    <Spinner size="large" style={{marginTop: 20}}/>
+                        <Spinner size="large" style={{marginTop: 20}}/>
                     }
                 </Panel>
             </View>
